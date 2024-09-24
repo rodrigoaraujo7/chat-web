@@ -23,6 +23,15 @@ export const ChatPage = () => {
             <img src={user?.photoURL as string} alt="" />
           </div>
         </header>
+
+        <s.ConversationBox>
+          <div></div>
+
+          <s.InputContainer>
+            <input type="text" name="" id="" placeholder='Type your message ...' />
+            <icon.Send />
+          </s.InputContainer>
+        </s.ConversationBox>
       </s.Chat>
     </s.Container>
   )
