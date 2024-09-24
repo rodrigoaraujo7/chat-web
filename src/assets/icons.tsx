@@ -27,6 +27,21 @@ export const Logo = () => (
   </svg>
 )
 
+export const Arrow = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="36"
+    height="10"
+    fill="none"
+    viewBox="0 0 36 10"
+  >
+    <path
+      fill="#FF2E2E"
+      d="M.523 4.523a.675.675 0 000 .954l4.295 4.296a.675.675 0 10.955-.955L1.955 5l3.818-3.818a.675.675 0 10-.955-.955L.523 4.523zM36 4.325H1v1.35h35v-1.35z"
+    ></path>
+  </svg>
+)
+
 export const Google = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
