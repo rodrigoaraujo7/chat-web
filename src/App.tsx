@@ -1,8 +1,11 @@
-import { SignIn } from 'pages/signIn';
-import * as React from 'react'
+import { LoginPage } from 'pages/Login';
+import React from 'react';
+import { auth } from 'services/firebaseConfig';
 
 export const App = () => {
   return (
-    <SignIn />
+    <React.Fragment>
+      {auth.currentUser ? <h1>Logado com sucesso</h1> : <LoginPage />}
+    </React.Fragment>
   );
 }
