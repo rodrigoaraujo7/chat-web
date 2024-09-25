@@ -88,6 +88,7 @@ export const ChatPage = () => {
               placeholder='Type your message ...'
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              autoComplete='off'
             />
             <button>
               <icon.Send />
