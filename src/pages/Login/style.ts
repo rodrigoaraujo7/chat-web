@@ -22,7 +22,7 @@ export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
 
-  background-color: #000;
+  background-color: #fff;
 
   display: flex;
   align-items: center;
@@ -34,7 +34,7 @@ export const Container = styled.div`
     font-size: 40px;
     font-weight: 700;
     letter-spacing: 8px;
-    color: #fff;
+    color: #000;
     text-transform: uppercase;
   }
 
@@ -42,17 +42,18 @@ export const Container = styled.div`
     border: 0;
 
     padding: 15px 35px;
-    border-radius: 50px;
+    border-radius: 5px;
 
     font-size: 18px;
-    color: #000;
+    color: #fff;
     font-weight: 500;
 
     display: flex;
     align-items: center;
     gap: 25px;
+    background-color: #000;
 
-    animation: ${boxshadowAnimate} 5s infinite ease-in-out;
+    /* animation: ${boxshadowAnimate} 5s infinite ease-in-out; */
     cursor: pointer;
 
     svg {
