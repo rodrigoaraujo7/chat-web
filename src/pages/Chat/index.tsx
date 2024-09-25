@@ -32,15 +32,17 @@ export const ChatPage = () => {
 
     if (inputValue === '') return
 
+    const msg: string = inputValue
+
+    // clear input
+    setInputValue('')
+
     await addDoc(messageRef, {
-      text: inputValue,
+      text: msg,
       uid: auth.currentUser?.uid,
       photoURL: auth.currentUser?.photoURL,
       createdAt: serverTimestamp()
     })
-
-    // clear input
-    setInputValue('')
 
     // scroll down when new msg
     if (scrollRef.current) {
