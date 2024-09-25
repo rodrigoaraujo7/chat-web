@@ -26,6 +26,8 @@ export const ChatPage = () => {
   const handleMessage = async (e: any) => {
     e.preventDefault()
 
+    if (inputValue === '') return
+
     await addDoc(messageRef, {
       text: inputValue,
       uid: auth.currentUser?.uid,
