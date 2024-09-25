@@ -21,7 +21,11 @@ export const ChatPage = () => {
   const queryMessages = query(messageRef, orderBy("createdAt"), limit(25))
   const [messages] = useCollectionData(queryMessages)
 
+  // input message
   const [inputValue, setInputValue] = React.useState<string>('')
+
+  // scroll ref to scroll down
+  const scrollRef = React.useRef<HTMLDivElement | null>(null)
 
   const handleMessage = async (e: any) => {
     e.preventDefault()
@@ -37,7 +41,19 @@ export const ChatPage = () => {
 
     // clear input
     setInputValue('')
+
+    // scroll down when new msg
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
   }
+
+  // scroll down when upload app
+  React.useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: 'auto' })
+    }
+  }, [messages])
 
   return (
     <s.Container>
@@ -58,6 +74,8 @@ export const ChatPage = () => {
                 {msg.text}
               </s.Message>
             ))}
+
+            <div ref={scrollRef} />
           </div>
 
           <s.InputContainer onSubmit={(e) => handleMessage(e)}>
