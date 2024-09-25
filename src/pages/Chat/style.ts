@@ -76,6 +76,15 @@ export const ConversationBox = styled.div`
   overflow: auto;
   margin: 0 89px;
 
+  .list-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to bottom, #fff, transparent);
+  }
+
   .messages-list {
     display: flex;
     flex-direction: column;
