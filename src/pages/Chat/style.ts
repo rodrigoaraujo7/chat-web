@@ -68,19 +68,21 @@ export const Chat = styled.div`
 `;
 
 export const ConversationBox = styled.div`
-  flex: 1;
+  display: flex;
+  flex-direction: column;
   border-radius: 0 0 20px 20px;
   position: relative;
+
+  overflow: auto;
+  margin: 0 89px;
 
   .messages-list {
     display: flex;
     flex-direction: column;
     gap: 32px;
 
-    position: absolute;
-    left: 89px;
-    right: 89px;
-    bottom: 140px;
+    margin-bottom: 10rem;
+    overflow: auto;
   }
 `;
 
@@ -95,6 +97,7 @@ export const Message = styled.div<{ $class: "primary" | "secondary" }>`
   border-radius: ${(props) =>
     props.$class === "primary" ? "10px 0 10px 10px" : "0 10px 10px 10px"};
 
+  align-self: flex-start;
   background-color: #eaebef;
   color: #000;
 
@@ -108,8 +111,8 @@ export const Message = styled.div<{ $class: "primary" | "secondary" }>`
 
 export const InputContainer = styled.form`
   position: absolute;
-  right: 89px;
-  left: 89px;
+  right: 0;
+  left: 0;
   bottom: 34px;
 
   display: flex;
@@ -120,6 +123,7 @@ export const InputContainer = styled.form`
   padding: 20px 25px;
   border-radius: 50px;
   border: 2px solid #e5e9ee;
+  background-color: #fff;
 
   transition: 0.15s;
 

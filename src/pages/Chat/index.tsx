@@ -54,7 +54,6 @@ export const ChatPage = () => {
         <s.ConversationBox>
           <div className='messages-list'>
             {messages?.map((msg, index) => (
-              // TODO: ESTILIZAR OS MENSSAGENS
               <s.Message key={index} $class={msg.uid === auth.currentUser?.uid ? 'primary' : 'secondary'}>
                 {msg.text}
               </s.Message>
