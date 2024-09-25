@@ -68,8 +68,6 @@ export const ChatPage = () => {
         </header>
 
         <s.ConversationBox>
-          <div className='list-gradient' />
-
           <div className='messages-list'>
             {messages?.map((msg, index) => (
               <s.Message key={index} $class={msg.uid === auth.currentUser?.uid ? 'primary' : 'secondary'}>
