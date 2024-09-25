@@ -75,10 +75,36 @@ export const ConversationBox = styled.div`
   .messages-list {
     display: flex;
     flex-direction: column;
+    gap: 32px;
+
+    position: absolute;
+    left: 89px;
+    right: 89px;
+    bottom: 140px;
   }
 `;
 
-export const Message = styled.div<{ $class: "primary" | "secondary" }>``;
+export const Message = styled.div<{ $class: "primary" | "secondary" }>`
+  max-width: 70%;
+  background-color: red;
+  padding: 8px 12px;
+
+  font-size: 14px;
+  font-weight: 300;
+
+  border-radius: ${(props) =>
+    props.$class === "primary" ? "10px 0 10px 10px" : "0 10px 10px 10px"};
+
+  background-color: #eaebef;
+  color: #000;
+
+  ${(props) =>
+    props.$class === "primary" && {
+      alignSelf: "flex-end",
+      color: "#fff",
+      background: "#000",
+    }}
+`;
 
 export const InputContainer = styled.form`
   position: absolute;
@@ -112,6 +138,12 @@ export const InputContainer = styled.form`
       font-style: italic;
       font-weight: 300;
     }
+  }
+
+  button {
+    border: 0;
+    background: none;
+    cursor: pointer;
   }
 
   svg {
