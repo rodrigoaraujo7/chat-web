@@ -1,9 +1,14 @@
+// react
+import * as React from 'react'
+
 // styles
 import * as s from './style'
 
-// auth
+// firebase
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth'
-import { auth } from 'services/firebaseConfig'
+import { auth, databaseApp } from 'services/firebaseConfig'
+import { addDoc, collection, limit, orderBy, query, serverTimestamp } from 'firebase/firestore'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
 
 // assets
 import * as icon from 'assets/icons'
@@ -11,6 +16,26 @@ import * as icon from 'assets/icons'
 export const ChatPage = () => {
   const [user] = useAuthState(auth)
   const [signOut] = useSignOut(auth)
+
+  const messageRef = collection(databaseApp, "messages") // ref db table
+  const queryMessages = query(messageRef, orderBy("createdAt"), limit(25))
+  const [messages] = useCollectionData(queryMessages)
+
+  const [inputValue, setInputValue] = React.useState<string>('')
+
+  const handleMessage = async (e: any) => {
+    e.preventDefault()
+
+    await addDoc(messageRef, {
+      text: inputValue,
+      uid: auth.currentUser?.uid,
+      photoURL: auth.currentUser?.photoURL,
+      createdAt: serverTimestamp()
+    })
+
+    // clear input
+    setInputValue('')
+  }
 
   return (
     <s.Container>
@@ -25,11 +50,26 @@ export const ChatPage = () => {
         </header>
 
         <s.ConversationBox>
-          <div></div>
+          <div className='messages-list'>
+            {messages?.map((msg, index) => (
+              <s.Message key={index} $class={msg.uid === auth.currentUser?.uid ? 'primary' : 'secondary'}>
+                {msg.text}
+              </s.Message>
+            ))}
+          </div>
 
-          <s.InputContainer>
-            <input type="text" name="" id="" placeholder='Type your message ...' />
-            <icon.Send />
+          <s.InputContainer onSubmit={(e) => handleMessage(e)}>
+            <input
+              type="text"
+              name="messageInput"
+              id="messageInput"
+              placeholder='Type your message ...'
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+            <button>
+              <icon.Send />
+            </button>
           </s.InputContainer>
         </s.ConversationBox>
       </s.Chat>

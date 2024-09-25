@@ -71,9 +71,16 @@ export const ConversationBox = styled.div`
   flex: 1;
   border-radius: 0 0 20px 20px;
   position: relative;
+
+  .messages-list {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
-export const InputContainer = styled.div`
+export const Message = styled.div<{ $class: "primary" | "secondary" }>``;
+
+export const InputContainer = styled.form`
   position: absolute;
   right: 89px;
   left: 89px;
